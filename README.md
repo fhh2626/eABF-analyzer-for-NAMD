@@ -19,3 +19,6 @@ one can see whether the gradient is continuous or not.
 _Plot time evolution of PMF RMSD:_  
 ./ABFparser.py -hist test_hist.pmf  
 one can see if the simulation is converged, i.e., if the RMSD remains to a constant.  
+
+
+Author:fhh2626_at_gmail.com
