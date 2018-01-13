@@ -5,6 +5,7 @@ Requirement:
 Python 3+, Matplotlib
 
 Usage:
+
 Plot 1D PMF curve from window-stratified eABF simulations:
 ./ABFparser.py -pmf test_1.pmf test_2.pmf test_3.pmf test_4.pmf test_5.pmf
 
