@@ -48,12 +48,25 @@ def convergence(input):
     plt.ylabel('RMSD (Colvars Unit)')
     plt.show()
 
-def plotMultipleLines(x, y):
+def writeMultipleLines(x, y, output):
+    ''' write a line into the output file '''
+    pmfX = []
+    pmfY = []
+    for i in range(len(x)):
+        for j in range(len(x[i])):
+            pmfX.append(x[i][j])
+            pmfY.append(y[i][j])
+        minY = min(pmfY)
+    with open(output, 'w') as ofile:
+        for i in range(len(pmfX)):
+            ofile.write('{:.4f} {:.4f}\n'.format(pmfX[i], pmfY[i] - minY))
+
+def plotMultipleLines(x, y, output = 'mergedFile'):
     ''' plot multiple lines '''
+    writeMultipleLines(x, y, output)
     color = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
     for i in range(len(x)):
-        for j in range(len(y)):
-            plt.plot(x[i], y[i], random.choice(color))
+        plt.plot(x[i], y[i], random.choice(color))
     plt.show()
 
 def plotMergedWindows(args, pmf = False):
@@ -93,7 +106,7 @@ def plotMergedWindows(args, pmf = False):
             x.append(xi)
             y.append(yi)
 
-    plotMultipleLines(x, y)
+    plotMultipleLines(x, y, args[0] + '.merged')
 
 
 if __name__ == "__main__":
