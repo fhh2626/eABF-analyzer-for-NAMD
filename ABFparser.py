@@ -47,6 +47,7 @@ def convergence(input):
     plt.xlabel('Frame')
     plt.ylabel('RMSD (Colvars Unit)')
     plt.show()
+    writeMultipleLines([(range(1, len(rmsdList) + 1))], [rmsdList], input + '.converge')
 
 def writeMultipleLines(x, y, output):
     ''' write a line into the output file '''
