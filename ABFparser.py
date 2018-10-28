@@ -15,13 +15,22 @@ def readFrame(input):
 
     G = []
     while True:
-        line = input.readline().strip().split()
-        if line == []:
-            break
-        if line[0].startswith('#'):
+        line = input.readline()
+        
+        # end of file
+        if not line:
+            return False
+            
+        splitedLine = line.strip().split()
+        if splitedLine == []:
+            if G == []:
+                continue
+            else:
+                break
+        if splitedLine[0].startswith('#'):
             continue
 
-        G.append(float(line[1]))
+        G.append(float(splitedLine[1]))
 
     if G != []:
         return calcRMSD(G)
@@ -75,6 +84,7 @@ def plotMergedWindows(args, pmf = False):
     x = []
     y = []
 
+    # used to make the relative height consistent when connecting PMF
     ylast = 0
     yfirst = 0
     for inputFile in args:
@@ -82,17 +92,20 @@ def plotMergedWindows(args, pmf = False):
             xi = []
             yi = []
 
-            if pmf == False:
+#            if pmf == False:
                 # skip the head of grad or count file
-                line = ifile.readline().strip().split()
-                line = ifile.readline().strip().split()
-                line = ifile.readline().strip().split()
+#                line = ifile.readline().strip().split()
+#                line = ifile.readline().strip().split()
+#                line = ifile.readline().strip().split()
 
             while True:
                 line = ifile.readline().strip().split()
                 if line == []:
-                    ylast = yi[-1]
-                    break
+                    if yi != []:
+                        ylast = yi[-1]
+                        break
+                    else:
+                        continue
                 if line[0].startswith('#'):
                     continue
                 if yi == [] and pmf == True:
