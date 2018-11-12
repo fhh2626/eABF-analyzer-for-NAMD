@@ -66,10 +66,10 @@ def writeMultipleLines(x, y, output):
         for j in range(len(x[i])):
             pmfX.append(x[i][j])
             pmfY.append(y[i][j])
-        minY = min(pmfY)
+        #minY = min(pmfY)
     with open(output, 'w') as ofile:
         for i in range(len(pmfX)):
-            ofile.write('{:.4f} {:.4f}\n'.format(pmfX[i], pmfY[i] - minY))
+            ofile.write('{:.4f} {:.4f}\n'.format(pmfX[i], pmfY[i]))
 
 def plotMultipleLines(x, y, output = 'mergedFile'):
     ''' plot multiple lines '''
